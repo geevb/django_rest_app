@@ -9,7 +9,7 @@ class Resume(models.Model):
     phone_number = models.CharField(max_length=20, default=0)
 
     class Meta:
-        ordering = ('first_name',)
+        ordering = ('id',)
 
 class PastExperience(models.Model):
     id = models.OneToOneField(Resume, on_delete=models.CASCADE, primary_key=True)

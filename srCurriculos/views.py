@@ -26,16 +26,28 @@ class ResumesAPI(APIView):
     def post(self, request):    
         try:
             payload = request.POST
-            return JsonResponse({'status': 'success'})
+
+            requiredKeys = ['first_name', 'last_name', 'age', 'email', 'desired_profession', 'phone_number']
+            if not all (key in payload for key in requiredKeys): # Valider obligatory parameters
+                raise ValueError('Invalid request body')
+
+            if 'adress' in payload:
+                print('as')
+
+            if 'past_experience' in payload:
+                print('yay')
+
+
+            return JsonResponse({'status': 'success'}, status=200)
         except Exception as e:
             return JsonResponse({'message': str(e)}, status=400)
 
     def delete(self, request):
         try:
-            payload = json.loads(request.body)
-            external_code_list = payload.get('external_code')
-            if external_code_list:
-                Resume.objects.filter(external_code__in=external_code_list).delete()
-            return JsonResponse({'status': 'success'})
+            payload = request.DELETE
+            if 'id' not in payload:            
+                raise ValueError('Resume \'id\' not specified')
+            
+            return JsonResponse({'status': 'success'}, status=200)
         except Exception as e:
             return JsonResponse({'message': str(e)}, status=400)
