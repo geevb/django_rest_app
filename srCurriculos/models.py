@@ -12,7 +12,7 @@ class Resume(models.Model):
         ordering = ('id',)
 
 class PastExperience(models.Model):
-    id = models.OneToOneField(Resume, on_delete=models.CASCADE, primary_key=True)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
     company = models.CharField(max_length=50)
     dt_start = models.DateField()
     dt_end = models.DateField(default='')
@@ -22,7 +22,7 @@ class PastExperience(models.Model):
         ordering = ('id',)
 
 class Adress(models.Model):
-    id = models.OneToOneField(Resume, on_delete=models.CASCADE, primary_key=True)
+    resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
     country = models.CharField(max_length=60)
     state = models.CharField(max_length=60)
     city = models.CharField(max_length=60)

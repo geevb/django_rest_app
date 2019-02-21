@@ -25,18 +25,17 @@ class ResumesAPI(APIView):
 
     def post(self, request):    
         try:
-            payload = request.POST
-
-            requiredKeys = ['first_name', 'last_name', 'age', 'email', 'desired_profession', 'phone_number']
-            if not all (key in payload for key in requiredKeys): # Valider obligatory parameters
+            payload = json.loads((request.body).decode('utf-8'))
+            requiredKeys = {'first_name', 'last_name', 'age', 'email', 'desired_profession', 'phone_number'}
+            if not all (key in payload for key in requiredKeys): # Validate obligatory parameters
                 raise ValueError('Invalid request body')
 
+            # print(payload)  
             if 'adress' in payload:
                 print('as')
 
             if 'past_experience' in payload:
                 print('yay')
-
 
             return JsonResponse({'status': 'success'}, status=200)
         except Exception as e:
@@ -44,7 +43,7 @@ class ResumesAPI(APIView):
 
     def delete(self, request):
         try:
-            payload = request.DELETE
+            payload = json.loads((request.body).decode('utf-8'))
             if 'id' not in payload:            
                 raise ValueError('Resume \'id\' not specified')
             
