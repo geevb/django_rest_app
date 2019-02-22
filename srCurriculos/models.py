@@ -21,7 +21,7 @@ class PastExperience(models.Model):
     class Meta:
         ordering = ('id',)
 
-class Adress(models.Model):
+class Address(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
     country = models.CharField(max_length=60)
     state = models.CharField(max_length=60)
