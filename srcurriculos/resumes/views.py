@@ -31,7 +31,8 @@ class ResumesAPI(APIView):
             
             raise ValueError('Keys: ' + ", ".join(invalidKeys) + ' are invalid')
         except ValueError as e:
-            return JsonResponse({'response': str(e)}, status=400)
+            return JsonResponse({'response': str(e)}, status = 400)
+
 
     def post(self, request):
         try:
@@ -40,7 +41,7 @@ class ResumesAPI(APIView):
             if not all (key in payload for key in requiredKeys): # Validate obligatory parameters
                 raise ValueError('Invalid request body')
             
-            # Update resume
+            # Update existing resume
             if 'id' in payload:
                 address = payload.pop('address', None)
                 past_experience = payload.pop('past_experience', None)
@@ -77,31 +78,47 @@ class ResumesAPI(APIView):
                         resume = resumeSet
                     )
 
-            return JsonResponse({'status': 'sucess'}, status=200)
+            return JsonResponse({'status': 'sucess'}, status = 201)
         except Exception as e:
-            return JsonResponse({'message': str(e)}, status=400)
+            return JsonResponse({'message': str(e)}, status = 400)
+
 
     def delete(self, request):
         try:
-            payload = json.loads(request.body)
-            external_code_list = payload.get('external_code')
-            if external_code_list:
-                Resume.objects.filter(external_code__in=external_code_list).delete()
-            return JsonResponse({'status': 'success'})
+            payload = request.data
+            if 'id' not in payload:
+                raise ValueError('Invalid \'id\' in request body')
+
+            Resume.objects.filter(id=payload.get('id')).delete()
+
+            return JsonResponse({'status': 'success'}, status = 204)
         except Exception as e:
-            return JsonResponse({'message': str(e)}, status=400)
+            return JsonResponse({'message': str(e)}, status = 400)
+
 
     def updateResume(self, payload, address = [], past_experiences = []):
         try:
             resumeId = payload.get('id')
             Resume.objects.filter(id=resumeId).update(**payload)
 
-            address = address if address else []
-            Address.objects.filter(resume_id=resumeId).update(**address)
 
-            # past_experiences = past_experiences if past_experiences else []
-            # PastExperience.objects.filter(resume=resumeId).update(**past_experiences)
+            address = address if address else []
+            requiredKeys = {'id', 'country', 'state', 'city', 'street'}
+            if not all (key in address for key in requiredKeys):
+                raise ValueError('Invalid address request body')
+
+            Address.objects.filter(id=address['id']).update(**address)
+
+
+            past_experiences = past_experiences if past_experiences else []
+            requiredKeys = {'id', 'company', 'dt_start', 'dt_end', 'description'}
+            for experience in past_experiences:                            
+                if not all (key in experience for key in requiredKeys):
+                    raise ValueError('Invalid past experience request body')
+
+                PastExperience.objects.filter(id=experience['id']).update(**experience)
             
-            return JsonResponse({'status': 'success'})
+            return JsonResponse({'status': 'success'}, status = 204)
         except Exception as e:
-            return JsonResponse({'message': str(e)}, status=400)
+            return JsonResponse({'message': str(e)}, status = 400)
+
