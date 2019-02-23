@@ -1,5 +1,4 @@
 import json
-import traceback
 from django.http import JsonResponse
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, OAuth2Authentication
 from rest_framework import generics
@@ -40,7 +39,14 @@ class ResumesAPI(APIView):
             requiredKeys = {'first_name', 'last_name', 'age', 'email', 'desired_profession', 'phone_number'}
             if not all (key in payload for key in requiredKeys): # Validate obligatory parameters
                 raise ValueError('Invalid request body')
+            
+            # Update resume
+            if 'id' in payload:
+                address = payload.pop('address', None)
+                past_experience = payload.pop('past_experience', None)
+                return self.updateResume(payload, address, past_experience)
 
+            # Create new resume
             resumeSet = Resume.objects.create(
                 first_name = payload['first_name'], 
                 last_name = payload['last_name'], 
@@ -81,6 +87,21 @@ class ResumesAPI(APIView):
             external_code_list = payload.get('external_code')
             if external_code_list:
                 Resume.objects.filter(external_code__in=external_code_list).delete()
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'message': str(e)}, status=400)
+
+    def updateResume(self, payload, address = [], past_experiences = []):
+        try:
+            resumeId = payload.get('id')
+            Resume.objects.filter(id=resumeId).update(**payload)
+
+            address = address if address else []
+            Address.objects.filter(resume_id=resumeId).update(**address)
+
+            # past_experiences = past_experiences if past_experiences else []
+            # PastExperience.objects.filter(resume=resumeId).update(**past_experiences)
+            
             return JsonResponse({'status': 'success'})
         except Exception as e:
             return JsonResponse({'message': str(e)}, status=400)
