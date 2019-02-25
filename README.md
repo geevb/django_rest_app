@@ -18,14 +18,15 @@
 
 1. After creating the Super User, login with it at: `http://localhost:8000/admin/`
 2. Then, create new Application here: `http://localhost:8000/o/applications/`
-3. Fill the form with this config:
+3. Fill the form with this config, **save it**:
+[New-Application](appConfig.png)
 
-4. Lastly, get both `CLIENT_ID` and `CLIENT_SECRET` values and insert them at `django_rest_app/settings.py` lines 137 and 138, respectively. Save the file.
+4. Lastly, get both `CLIENT_ID` and `CLIENT_SECRET` values and insert them at `django_rest_app/settings.py` lines 137 and 138, respectively. **Save the file.**
 
 
 ## Testing the API
 
-1. You can user Curl to test the endpoints, but it will be a lot easier if you import the `srCurriculos.postman_collection.json` into Postman.
+1. You can user Curl to test the endpoints, but it will be a lot easier if you import the `srCurriculos.postman_collection.json` into **Postman.**
 2. The collection provided has all the methods pre-configured to all endpoints created in this application.
 3. Note that, the first endpoint that needs to be consumed is the `Add new user` with the body:
 ```JSON
@@ -65,6 +66,6 @@ To renew the token, use the `Request auth. token` in the Postman Collection.
 - [ ] Easier set-up
 
 
-## Authors
-|  [Getúlio Benincá](https://github.com/geevb)  |
+## Author
+[Getúlio Benincá](https://github.com/geevb)
 
