@@ -19,7 +19,7 @@
 1. After creating the Super User, login with it at: `http://localhost:8000/admin/`
 2. Then, create new Application here: `http://localhost:8000/o/applications/`
 3. Fill the form with this config, **save it**:
-[New-Application](appConfig.png)
+![New-Application](appConfig.png)
 
 4. Lastly, get both `CLIENT_ID` and `CLIENT_SECRET` values and insert them at `django_rest_app/settings.py` lines 137 and 138, respectively. **Save the file.**
 
