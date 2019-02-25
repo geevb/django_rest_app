@@ -18,7 +18,8 @@
 
 1. After creating the Super User, login with it at: `http://localhost:8000/admin/`
 2. Then, create new Application here: `http://localhost:8000/o/applications/`
-3. Fill the form with this config, **save it**:
+3. Fill the form with this config, **save it**
+
 ![New-Application](appConfig.png)
 
 4. Lastly, get both `CLIENT_ID` and `CLIENT_SECRET` values and insert them at `django_rest_app/settings.py` lines 137 and 138, respectively. **Save the file.**
@@ -43,7 +44,7 @@ To renew the token, use the `Request auth. token` in the Postman Collection.
 ## What the application does
 
 - [ ] Build and Run Django + Django REST with OAuth2 and PostgreSQL
-- [ ] Expose endpoints to Create users and Create/Edit/Remove resumes.
+- [ ] Expose endpoints to **Create** Users and **Create, Edit, Remove** Resumes.
 - [ ] On every endpoint, the connection with PostgreSQL will be made, persisting the data as long as the Docker container is up.
 
 
