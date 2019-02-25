@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "0aca722e-a386-4963-a146-ec0ce122319b",
+		"name": "srCurriculos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Resumes",
+			"item": [
+				{
+					"name": "Add resume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"first_name\": \"ddddddd\", \n\t\"last_name\": \"XXddddddddX\", \n\t\"age\": 191919191, \n\t\"email\": \"XXXX@bol.com.br\", \n\t\"desired_profession\": \"Singer\", \n\t\"phone_number\": 999,\n\t\"address\": {\n\t\t\"id\":\"3\",\n\t\t\"country\": \"BABABABA\",\n\t\t\"state\": \"BABABABA\", \n\t\t\"city\": \"BABABABABA\", \n\t\t\"street\": \"BABABABA\"\n\t},\n\t\"past_experience\": [{\n\t\t\"id\":\"3\",\n\t\t\"company\": \"LLLLL\",\n\t\t\"dt_start\": \"2050-01-01\",\n\t\t\"dt_end\": \"2060-03-30\",\n\t\t\"description\": \"something\"\n\t},{\n\t\t\"id\":\"4\",\n\t\t\"company\": \"XXXXXX\",\n\t\t\"dt_start\": \"2000-01-02\",\n\t\t\"dt_end\": \"2039-03-31\",\n\t\t\"description\": \"XXXXXXXXXXXXX\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/resumes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"resumes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit resume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"1\",\n\t\"first_name\": \"ddddddd\", \n\t\"last_name\": \"XXddddddddX\", \n\t\"age\": 191919191, \n\t\"email\": \"XXXX@bol.com.br\", \n\t\"desired_profession\": \"Singer\", \n\t\"phone_number\": 999,\n\t\"address\": {\n\t\t\"id\":\"3\",\n\t\t\"country\": \"BABABABA\",\n\t\t\"state\": \"BABABABA\", \n\t\t\"city\": \"BABABABABA\", \n\t\t\"street\": \"BABABABA\"\n\t},\n\t\"past_experience\": [{\n\t\t\"id\":\"3\",\n\t\t\"company\": \"LLLLL\",\n\t\t\"dt_start\": \"2050-01-01\",\n\t\t\"dt_end\": \"2060-03-30\",\n\t\t\"description\": \"something\"\n\t},{\n\t\t\"id\":\"4\",\n\t\t\"company\": \"XXXXXX\",\n\t\t\"dt_start\": \"2000-01-02\",\n\t\t\"dt_end\": \"2039-03-31\",\n\t\t\"description\": \"XXXXXXXXXXXXX\"\n\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/resumes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"resumes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove resume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/resumes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"resumes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all resumes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/resumes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"resumes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List specific resume",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/resumes/?id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"resumes",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Add new user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"bobby\",\n\t\"password\":\"123123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request auth. token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/o/token/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"o",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
