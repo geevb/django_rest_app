@@ -1,7 +1,8 @@
 # SrCurriculos
 
 ![Docker + DJango](https://cdn-images-1.medium.com/max/422/1*rPq3u8hlfXbz4edT2MQW0Q.png)
-A fully integrated Docker + DJango and DJango REST Framework + PostgreSQL application.
+
+**A fully integrated Docker + DJango + DJango REST Framework and OAuth2 + PostgreSQL application.**
 
 ## How to Build
 
@@ -24,8 +25,8 @@ A fully integrated Docker + DJango and DJango REST Framework + PostgreSQL applic
 
 ## Testing the API
 
-1. You can user Curl to test the endpoints, but it will be a lot easier if you just import the `srCurriculos.postman_collection.json` into Postman.
-2. The collection provided has all the methods to all endpoints created in this application.
+1. You can user Curl to test the endpoints, but it will be a lot easier if you import the `srCurriculos.postman_collection.json` into Postman.
+2. The collection provided has all the methods pre-configured to all endpoints created in this application.
 3. Note that, the first endpoint that needs to be consumed is the `Add new user` with the body:
 ```JSON
 {
@@ -40,7 +41,7 @@ To renew the token, use the `Request auth. token` in the Postman Collection.
 
 ## What the application does
 
-- [ ] Build and Run Django + Django REST and PostgreSQL
+- [ ] Build and Run Django + Django REST with OAuth2 and PostgreSQL
 - [ ] Expose endpoints to Create users and Create/Edit/Remove resumes.
 - [ ] On every endpoint, the connection with PostgreSQL will be made, persisting the data as long as the Docker container is up.
 
