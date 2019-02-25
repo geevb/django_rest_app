@@ -1,0 +1,5 @@
+Django
+psycopg2-binary
+djangorestframework
+django-oauth-toolkit
+rest_condition

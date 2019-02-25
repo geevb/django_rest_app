@@ -1,0 +1,35 @@
+docker-compose up -d db && docker-compose up web
+docker exec -ti django_1 python manage.py migrate
+docker exec -ti django_1 python manage.py createsuperuser
+
+Acessar:
+http://localhost:8000/admin/
+http://localhost:8000/o/applications/
+
+Criar aplicativo
+Pegar Client ID and Secret
+Inserir valores em django_rest_app/settings:137 e 138, respectivamente
+
+/////////////////////
+
+
+POST em http://localhost:8000/users/register/
+com {
+	"username":"getulio",
+	"password":"123123"
+}
+pegar o valor de 'access_token': '3ZW0UXNSj49U56A6v05PQtSVtGFqqC'
+
+Para pegar uma access_token nova:
+POST em http://localhost:8000/o/token/
+com {
+    "grant_type":"password"
+    "client_id":"<VALOR_CLIENT_ID>"
+    "client_secret":"<VALOR_CLIENT_SECRET>"
+    "username":"<NOME_USUARIO>"
+    "password":"<SENHA_USUARIO>"
+}
+
+Próximos 
+
+Agora é usar normal :D
